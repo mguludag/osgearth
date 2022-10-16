@@ -74,3 +74,8 @@ jobs:
       working-directory: ${{ runner.workspace }}/build
       shell: bash
       run: cmake --build . --config $BUILD_TYPE
+      
+    - uses: actions/download-artifact@v3
+      with:
+        name: osgearth-win64
+        path: ${{ runner.workspace }}
