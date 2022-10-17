@@ -79,11 +79,11 @@ jobs:
     - uses: vimtor/action-zip@v1
       with:
         files:  ${{ runner.workspace }} 
-        dest: D:/a/osgearth-win64.zip
+        dest: osgearth-win64.zip
 
     - uses: actions/download-artifact@v3
       with:
         name: osgearth-win64
-        path: D:/a/osgearth-win64.zip
+        path: osgearth-win64.zip
       
     
