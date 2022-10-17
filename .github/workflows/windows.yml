@@ -80,10 +80,18 @@ jobs:
       with:
         files:  ${{ runner.workspace }} 
         dest: osgearth-win64.zip
+        
+    - uses: actions/upload-artifact@v2
+      with:
+        name: osgearth-win64
+        path: |
+          ${{ runner.workspace }}/osgearth-win64.zip
+        retention-days: 3
 
     - uses: actions/download-artifact@v3
       with:
         name: osgearth-win64
-        path: osgearth-win64.zip
+        path: |
+          ${{ runner.workspace }}/osgearth-win64.zip
       
     
