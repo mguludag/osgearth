@@ -75,7 +75,15 @@ jobs:
       shell: bash
       run: cmake --build . --config $BUILD_TYPE
       
+    - uses: actions/checkout@v2
+    - uses: vimtor/action-zip@v1
+      with:
+        files:  ${{ runner.workspace }} 
+        dest: osgearth-win64.zip
+
     - uses: actions/download-artifact@v3
       with:
         name: osgearth-win64
-        path: ${{ runner.workspace }}
+        path: ${{ runner.workspace }}/osgearth-win64.zip
+      
+    
