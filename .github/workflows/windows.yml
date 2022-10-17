@@ -75,7 +75,7 @@ jobs:
       shell: bash
       run: cmake --build . --config $BUILD_TYPE
       
-    - uses: actions/checkout@v2
+#    - uses: actions/checkout@v2
     - uses: vimtor/action-zip@v1
       with:
         files:  ${{ runner.workspace }} 
