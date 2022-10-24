@@ -51,6 +51,10 @@ jobs:
         -name "GitHub"
         -username "gwaldron"
         -password "${{ secrets.GITHUB_TOKEN }}"
+        
+ #   - name: Download 7z4ps
+ #     working-directory: ${{ runner.workspace }}
+ #     run: Save-Module -Name 7Zip4Powershell -Path ${{ runner.workspace }} | $ver = Get-ChildItem -Path ${{ runner.workspace }}/7Zip4Powershell/ -Name | Import-Module ${{ runner.workspace }}/7Zip4Powershell/$ver/7Zip4PowerShell.psd1
 
     - name: Create Build Environment
       run: |
@@ -82,15 +86,16 @@ jobs:
       
 #    - uses: actions/checkout@v2
 #    - uses: vimtor/action-zip@v1
-    - name: Compress articraft
-      working-directory: ${{ runner.workspace }}
-      run: Compress-Archive -Path ${{ runner.workspace }}/* -DestinationPath ${{ runner.workspace }}/osg64.zip -CompressionLevel "NoCompression" 
+#    - name: Compress articraft
+#      working-directory: ${{ runner.workspace }}
+#      run: Compress-7Zip -Path ${{ runner.workspace }}/osgearth -ArchiveFileName osg64.7z #Compress-Archive -Path ${{ runner.workspace }}/* -DestinationPath ${{ runner.workspace }}/osg64.zip -CompressionLevel "NoCompression" 
+        
         
     - uses: actions/upload-artifact@v2
       with:
         name: osgearth-win64
         path: |
-          ${{ runner.workspace }}/osg64.zip
+          ${{ runner.workspace }}/osgeath/
         retention-days: 3
       
     
