@@ -57,7 +57,7 @@ jobs:
         cmake -E make_directory ${{runner.workspace}}/build
 
     - name: Configure CMake
-      shell: bash
+      #shell: bash
       working-directory: ${{ runner.workspace }}/build
       run: cmake $GITHUB_WORKSPACE -DWIN32_USE_MP=ON -DOSGEARTH_BUILD_LEGACY_SPLAT_NODEKIT=ON -DCMAKE_INSTALL_PREFIX=${{runner.workspace}}/osg64 -DOSGEARTH_BUILD_PROCEDURAL_NODEKIT=ON -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_TOOLCHAIN_FILE=${{ matrix.VCPKG_WORKSPACE }}/vcpkg/scripts/buildsystems/vcpkg.cmake
 
@@ -84,7 +84,7 @@ jobs:
 #    - uses: vimtor/action-zip@v1
     - name: Compress articraft
       working-directory: ${{ runner.workspace }}
-      run: Compress-Archive -Path ${{ runner.workspace }}/osgearth/* -DestinationPath ${{ runner.workspace }}/osg64.zip
+      run: Compress-Archive -Path ${{ runner.workspace }}/* -DestinationPath ${{ runner.workspace }}/osg64.zip
         
     - uses: actions/upload-artifact@v2
       with:
