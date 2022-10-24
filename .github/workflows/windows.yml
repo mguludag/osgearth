@@ -84,7 +84,7 @@ jobs:
 #    - uses: vimtor/action-zip@v1
     - name: Compress articraft
       working-directory: ${{ runner.workspace }}
-      run: Compress-Archive -Path ${{ runner.workspace }}/* -DestinationPath ${{ runner.workspace }}/osg64.zip
+      run: Compress-Archive -Path ${{ runner.workspace }}/* -DestinationPath ${{ runner.workspace }}/osg64.zip -CompressionLevel "NoCompression" 
         
     - uses: actions/upload-artifact@v2
       with:
