@@ -95,7 +95,7 @@ jobs:
       with:
         name: osgearth-win64
         path: |
-          ${{ runner.workspace }}/osgeath/
+          ${{ runner.workspace }}/
         retention-days: 3
       
     
