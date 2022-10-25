@@ -86,23 +86,23 @@ jobs:
       
     - name: Copy dependencies (dll)
       working-directory: ${{ runner.workspace }}
-      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/bin/*.dll" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/bin" -Recurse
+      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/bin/*.dll" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/bin" -Recurse -Force
       
     - name: Copy dependencies (lib)
       working-directory: ${{ runner.workspace }}
-      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/lib/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/lib" -Recurse
+      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/lib/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/lib" -Recurse -Force
       
     - name: Copy dependencies (inc)
       working-directory: ${{ runner.workspace }}
-      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/include/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/include" -Recurse
+      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/include/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/include" -Recurse -Force
       
     - name: Copy dependencies (tools)
       working-directory: ${{ runner.workspace }}
-      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/tools/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/tols" -Recurse
+      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/tools/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/tols" -Recurse -Force
       
     - name: Copy dependencies (data)
       working-directory: ${{ runner.workspace }}
-      run: Copy-Item -Path "${{ runner.workspace }}/osgearth/data/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/data" -Recurse
+      run: Copy-Item -Path "${{ runner.workspace }}/osgearth/data/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/data" -Recurse -Force
       
 #    - uses: actions/checkout@v2
 #    - uses: vimtor/action-zip@v1
