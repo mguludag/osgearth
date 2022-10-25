@@ -118,7 +118,7 @@ jobs:
       
     - name: Copy dependencies (tools)
       working-directory: ${{ runner.workspace }}
-      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/tools/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/tols" -Recurse -Force
+      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/tools/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/tools" -Recurse -Force
       
     - name: Copy dependencies (data)
       working-directory: ${{ runner.workspace }}
