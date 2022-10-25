@@ -84,6 +84,26 @@ jobs:
       shell: bash
       run: cmake --build build --target INSTALL --config $BUILD_TYPE
       
+    - name: mkdir bin
+      working-directory: ${{ runner.workspace }}
+      run: New-Item -Path '${{ runner.workspace }}/build/osgearth_msvc64/deps/bin' -ItemType Directory
+      
+    - name: mkdir lib
+      working-directory: ${{ runner.workspace }}
+      run: New-Item -Path '${{ runner.workspace }}/build/osgearth_msvc64/deps/lib' -ItemType Directory
+      
+    - name: mkdir inc
+      working-directory: ${{ runner.workspace }}
+      run: New-Item -Path '${{ runner.workspace }}/build/osgearth_msvc64/deps/include' -ItemType Directory
+      
+    - name: mkdir tools
+      working-directory: ${{ runner.workspace }}
+      run: New-Item -Path '${{ runner.workspace }}/build/osgearth_msvc64/deps/tools' -ItemType Directory
+      
+    - name: mkdir data
+      working-directory: ${{ runner.workspace }}
+      run: New-Item -Path '${{ runner.workspace }}/build/osgearth_msvc64/data' -ItemType Directory
+      
     - name: Copy dependencies (dll)
       working-directory: ${{ runner.workspace }}
       run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/bin/*.dll" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/bin" -Recurse -Force
