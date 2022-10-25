@@ -63,7 +63,7 @@ jobs:
     - name: Configure CMake
       shell: bash
       working-directory: ${{ runner.workspace }}/build
-      run: cmake $GITHUB_WORKSPACE -DWIN32_USE_MP=ON -DOSGEARTH_BUILD_LEGACY_SPLAT_NODEKIT=ON -DCMAKE_INSTALL_PREFIX=./osg64 -DOSGEARTH_BUILD_PROCEDURAL_NODEKIT=ON -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_TOOLCHAIN_FILE=${{ matrix.VCPKG_WORKSPACE }}/vcpkg/scripts/buildsystems/vcpkg.cmake
+      run: cmake $GITHUB_WORKSPACE -DWIN32_USE_MP=ON -DOSGEARTH_BUILD_LEGACY_SPLAT_NODEKIT=ON -DCMAKE_INSTALL_PREFIX=./osgearth_msvc64 -DOSGEARTH_BUILD_PROCEDURAL_NODEKIT=ON -DCMAKE_BUILD_TYPE=$BUILD_TYPE -DCMAKE_TOOLCHAIN_FILE=${{ matrix.VCPKG_WORKSPACE }}/vcpkg/scripts/buildsystems/vcpkg.cmake
 
     - name: 'Upload cmake configure log artifact'
       uses: actions/upload-artifact@v2
@@ -84,6 +84,26 @@ jobs:
       shell: bash
       run: cmake --build build --target INSTALL --config $BUILD_TYPE
       
+    - name: Copy dependencies (dll)
+      working-directory: ${{ runner.workspace }}
+      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/bin/*.dll" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/bin" -Recurse
+      
+    - name: Copy dependencies (lib)
+      working-directory: ${{ runner.workspace }}
+      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/lib/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/lib" -Recurse
+      
+    - name: Copy dependencies (inc)
+      working-directory: ${{ runner.workspace }}
+      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/include/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/include" -Recurse
+      
+    - name: Copy dependencies (tools)
+      working-directory: ${{ runner.workspace }}
+      run: Copy-Item -Path "${{ runner.workspace }}/build/vcpkg_installed/x64-windows/tools/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/deps/tols" -Recurse
+      
+    - name: Copy dependencies (data)
+      working-directory: ${{ runner.workspace }}
+      run: Copy-Item -Path "${{ runner.workspace }}/osgearth/data/*" -Destination "${{ runner.workspace }}/build/osgearth_msvc64/data" -Recurse
+      
 #    - uses: actions/checkout@v2
 #    - uses: vimtor/action-zip@v1
 #    - name: Compress articraft
@@ -95,7 +115,7 @@ jobs:
       with:
         name: osgearth-win64
         path: |
-          ${{ runner.workspace }}/build/osg64/
+          ${{ runner.workspace }}/build/osgearth_msvc64/
         retention-days: 3
       
     
